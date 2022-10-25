@@ -1,12 +1,12 @@
 // ITERATION 1
 
 function updateSubtotal(product) {
-  console.log('Calculating subtotal, yey!');
+  ('Calculating subtotal, yey!');
 
   let quantity = Number(product.querySelector('.quantity input').value);
-  console.log(quantity);
+  quantity;
   const price = Number(product.querySelector('.price span').innerText);
-  console.log(price);
+  price;
 
   product.querySelector('.subtotal span').innerText = price * quantity;
   return price * quantity;
@@ -34,19 +34,40 @@ function calculateAll() {
 
 function removeProduct(event) {
   const target = event.currentTarget;
-  console.log('The target in remove is:', target);
-  
+  'The target in remove is:', target;
+  event.currentTarget.parentElement.parentElement;
+  target.parentElement.parentElement.remove();
 }
 
 // ITERATION 5
 
 function createProduct() {
-  //... your code goes here
+  let inputs = document
+    .querySelector('.create-product')
+    .getElementsByTagName('input');
+
+  let name = inputs[0].value;
+  name;
+  let price = inputs[1].value;
+  price;
+
+  let productToCopy = document.querySelector('.product');
+  productToCopy;
+  let copyOfProduct = productToCopy.cloneNode(true);
+  copyOfProduct;
+
+  document.querySelector('tbody').appendChild(copyOfProduct);
+
+  copyOfProduct.querySelector('.price span').innerText = price;
+  copyOfProduct.querySelector('.name span').innerText = name;
 }
 
 window.addEventListener('load', () => {
   const calculatePricesBtn = document.getElementById('calculate');
   calculatePricesBtn.addEventListener('click', calculateAll);
-
-  //... your code goes here
+  let removeButtonList = document.querySelectorAll('.btn-remove');
+  for (const removeButton of removeButtonList) {
+    removeButton.addEventListener('click', removeProduct);
+  }
+  document.querySelector('#create').addEventListener('click', createProduct);
 });
